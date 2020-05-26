@@ -206,6 +206,10 @@ function t() {
         exit 1
     fi
 
+    if [[ $(file $WORKDIR/curl.result.out) =~ "POSIX tar archive" ]]; then
+        return
+    fi
+
     cat $WORKDIR/curl.headers.out >>$LOG 2>/dev/null || true
     output=$(< $WORKDIR/curl.result.out)
 
